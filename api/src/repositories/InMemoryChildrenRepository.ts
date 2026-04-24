@@ -70,4 +70,8 @@ export class InMemoryChildrenRepository {
       },
     };
   }
+
+  async findById(id: string): Promise<IChild | null> {
+    return this.children.find((child) => child.id === id) || null;
+  }
 }
