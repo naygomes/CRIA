@@ -1,4 +1,4 @@
-import { IChild, Pagination } from "./index.ts";
+import { IChild, Pagination } from "./index.js";
 
 export interface IFindAllParams {
   filters?: IFindAllFilters;
@@ -26,4 +26,10 @@ export interface IGetSummaryResponse {
   childrenTotal: number;
   reviewedTotal: number;
   alerts: IGetAlertSummary;
+}
+export interface IChildrenRepository {
+  findAll(params?: IFindAllParams): Promise<IFindAllResponse | null>;
+  findById(id: string): Promise<IChild | null>;
+  getSummary(): Promise<IGetSummaryResponse | null>;
+  review(id: string, technicalEmail: string): Promise<IChild | null>;
 }

@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { loadSeedData } from "@/utils";
 import {
   IChild,
+  IChildrenRepository,
   IFindAllResponse,
   IFindAllParams,
   IFindAllFilters,
@@ -14,7 +15,7 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const seedPath = path.resolve(__dirname, "../../../data/seed.json");
-export class InMemoryChildrenRepository {
+export class InMemoryChildrenRepository implements IChildrenRepository {
   private children: IChild[];
 
   constructor() {
