@@ -65,12 +65,7 @@ export class ChildrenController {
       throw new BadRequestError("ID duplicado não é permitido.");
     }
 
-    const { technicalEmail } = req.body;
-    if (!technicalEmail || typeof technicalEmail !== "string") {
-      throw new BadRequestError(
-        "O campo 'technicalEmail' é obrigatório e deve ser uma string.",
-      );
-    }
+    const technicalEmail = req.user!.email;
 
     const updatedChild = await this.childrenService.review(id, technicalEmail);
     res.json(updatedChild);
