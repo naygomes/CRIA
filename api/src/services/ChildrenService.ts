@@ -6,6 +6,7 @@ import {
   IGetSummaryResponse,
 } from "@/types";
 import { isValidEmail } from "@/utils";
+import { BadRequestError, NotFoundError } from "@/errors";
 
 export class ChildrenService {
   constructor(private childrenRepository: IChildrenRepository) {}
@@ -14,7 +15,7 @@ export class ChildrenService {
     const isInvalidPage =
       params.page !== undefined && (isNaN(params.page) || params.page < 1);
     if (isInvalidPage) {
-      throw new Error(
+      throw new BadRequestError(
         "Ação inválida: O número da página deve ser um valor numérico maior que zero.",
       );
     }
@@ -22,7 +23,7 @@ export class ChildrenService {
     const isInvalidLimit =
       params.limit !== undefined && (isNaN(params.limit) || params.limit < 1);
     if (isInvalidLimit) {
-      throw new Error(
+      throw new BadRequestError(
         "Ação inválida: O limite de itens deve ser um valor numérico maior que zero.",
       );
     }
@@ -31,6 +32,7 @@ export class ChildrenService {
     if (params.limit && params.limit > MAX_LIMIT) {
       params.limit = MAX_LIMIT;
     }
+
     return this.childrenRepository.findAll(params);
   }
 
@@ -56,27 +58,27 @@ export class ChildrenService {
 
   async review(id: string, technicalEmail: string): Promise<IChild> {
     if (!isValidEmail(technicalEmail)) {
-      throw new Error(
+      throw new BadRequestError(
         "Acesso negado: E-mail inválido. Tente novamente com outro e-mail.",
       );
     }
     if (!this.isCorporateEmail(technicalEmail)) {
-      throw new Error(
+      throw new BadRequestError(
         "Acesso negado: Apenas e-mails corporativos (@prefeitura.rio) podem realizar revisões.",
       );
     }
 
     const child = await this.childrenRepository.findById(id);
     if (!child) {
-      throw new Error("Ação inválida: Criança não encontrada.");
+      throw new NotFoundError("Criança não encontrada.");
     }
     if (child.revisado) {
-      throw new Error(
+      throw new BadRequestError(
         "Ação inválida: Esta criança já foi revisada e não pode ser alterada.",
       );
     }
     if (this.getTotalAlerts(child) === 0) {
-      throw new Error(
+      throw new BadRequestError(
         "Ação inválida: Esta criança não possui alertas a serem revisados.",
       );
     }
