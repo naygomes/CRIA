@@ -22,4 +22,8 @@ export class AuthService {
 
     return { token, user: userWithoutPassword };
   }
+
+  async findById(id: string): Promise<IUser | null> {
+    return this.authRepository.findById(id);
+  }
 }
