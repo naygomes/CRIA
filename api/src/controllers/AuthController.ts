@@ -5,6 +5,17 @@ import { BadRequestError, NotFoundError } from "@/errors";
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  register = async (req: Request, res: Response) => {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      throw new BadRequestError("Nome, e-mail e senha são obrigatórios.");
+    }
+
+    const result = await this.authService.register({ name, email, password });
+    res.json(result);
+  };
+
   login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
