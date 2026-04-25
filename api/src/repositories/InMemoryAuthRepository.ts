@@ -24,4 +24,8 @@ export class InMemoryAuthRepository implements IAuthRepository {
   async findByEmail(email: string): Promise<IUser | null> {
     return this.users.find((user) => user.email === email) || null;
   }
+
+  async findById(id: string): Promise<IUser | null> {
+    return this.users.find((user) => user.id === id) || null;
+  }
 }
