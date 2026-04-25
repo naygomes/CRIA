@@ -1,0 +1,14 @@
+[
+  {
+    "id": "u001",
+    "name": "Técnico Vigia Menor",
+    "email": "tecnico@prefeitura.rio",
+    "password": "painel@2024"
+  },
+  {
+    "id": "u002",
+    "name": "Nayara Gomes",
+    "email": "nayara.gomes@prefeitura.rio",
+    "password": "senha123"
+  }
+]
