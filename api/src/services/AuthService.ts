@@ -1,6 +1,7 @@
-import { IAuthRepository, ILoginResponse, IUser } from "@/types";
-import { BadRequestError } from "@/errors";
 import jwt from "jsonwebtoken";
+import { IAuthRepository, ILoginResponse, IUser } from "@/types";
+import { BadRequestError, InternalServerError } from "@/errors";
+import { JWT_SECRET } from "@/settings.js";
 
 export class AuthService {
   constructor(private authRepository: IAuthRepository) {}
@@ -12,11 +13,15 @@ export class AuthService {
       throw new BadRequestError("E-mail ou senha inválidos.");
     }
 
-    const token = jwt.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_SECRET || "chave_secreta_super_segura_para_dev",
-      { expiresIn: "1d" },
-    );
+    if (!JWT_SECRET) {
+      throw new InternalServerError(
+        "CRITICAL ERROR: A variável de ambiente JWT_SECRET não foi configurada no arquivo .env",
+      );
+    }
+
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+      expiresIn: "1d",
+    });
 
     const { password: _, ...userWithoutPassword } = user;
 
