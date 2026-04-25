@@ -1,1 +1,2 @@
-export * from "./InMemoryChildrenRepository.js"
+export * from "./InMemoryAuthRepository.js";
+export * from "./InMemoryChildrenRepository.js";
