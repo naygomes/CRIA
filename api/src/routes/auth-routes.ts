@@ -1,0 +1,15 @@
+import { Router } from "express";
+import { InMemoryAuthRepository } from "@/repositories";
+import { AuthService } from "@/services";
+import { AuthController } from "@/controllers";
+
+const authRoutes = Router();
+
+const authRepository = new InMemoryAuthRepository();
+const authService = new AuthService(authRepository);
+const authController = new AuthController(authService);
+
+authRoutes.post("/login", authController.login);
+authRoutes.get("/users/:id", authController.findById);
+
+export { authRoutes };
