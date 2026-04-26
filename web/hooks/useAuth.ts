@@ -42,6 +42,7 @@ export function useAuth() {
       setUser(response.user);
     } catch (error) {
       console.error("Erro no login:", error);
+      throw error;
     }
   }
 
