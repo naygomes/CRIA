@@ -1,9 +1,18 @@
 import express from "express";
+import cors from "cors";
 import { errorHandler } from "@/middlewares";
 import { childrenRoutes, authRoutes } from "@/routes";
 import { PORT } from "@/settings.js";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 app.use(express.json());
 
