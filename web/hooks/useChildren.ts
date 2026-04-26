@@ -7,7 +7,7 @@ import { IGetChildrenParams } from "@/types";
 
 export function useChildren() {
   const { token } = useAuth();
-  const { get } = useFetch({ baseURL: CHILDREN_ROUTE });
+  const { get, patch } = useFetch({ baseURL: CHILDREN_ROUTE });
 
   const customHeaders = useMemo(
     () => ({
@@ -67,5 +67,20 @@ export function useChildren() {
     }
   };
 
-  return { getChildren, getSummary, getChildById };
+  const reviewChild = async (id: string) => {
+    if (!token) return;
+
+    try {
+      const result = await patch({
+        endpoint: "/" + id + "/review",
+        customHeaders,
+      });
+
+      return result;
+    } catch (error) {
+      console.error("Erro ao fazer revisão:", error);
+    }
+  };
+
+  return { getChildren, getSummary, getChildById, reviewChild };
 }
