@@ -18,7 +18,7 @@ export function useChildren() {
 
   const getChildren = useCallback(
     async (params: IGetChildrenParams = {}) => {
-      if (!token) return;
+      if (!token) return null;
       try {
         const response = await get({
           endpoint: "",
@@ -38,7 +38,7 @@ export function useChildren() {
   );
 
   const getSummary = useCallback(async () => {
-    if (!token) return;
+    if (!token) return null;
 
     try {
       const summary = await get({
@@ -53,7 +53,7 @@ export function useChildren() {
   }, [get, customHeaders, token]);
 
   const getChildById = async (id: string) => {
-    if (!token) return;
+    if (!token) return null;
 
     try {
       const child = await get({
@@ -68,7 +68,7 @@ export function useChildren() {
   };
 
   const reviewChild = async (id: string) => {
-    if (!token) return;
+    if (!token) return null;
 
     try {
       const result = await patch({
