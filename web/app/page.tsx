@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Navbar, ChildrenSection, Footer } from "@/components";
+import { Navbar, ChildrenSection, Footer, Dashboard } from "@/components";
 import { useChildren, useAuth } from "@/hooks";
 import { IGetSummaryResponse } from "@/types";
 
@@ -34,6 +34,7 @@ export default function Home() {
     <div className="bg-vm-background w-screen h-screen overflow-x-hidden">
       <Navbar />
       <div className="min-h-screen h-fit flex flex-col items-center justify-start gap-10 pt-40 px-4">
+        <Dashboard summary={summary} />
         <ChildrenSection neighborhoods={neighborhoods} />
         <Footer />
       </div>
