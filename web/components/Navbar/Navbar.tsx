@@ -12,7 +12,7 @@ export function Navbar({ logoPosition = "left" }: INavbarProps) {
   const router = useRouter();
   const { logout, user } = useAuth();
 
-  const LABEL = `Olá, ${user?.name}!`;
+  const LABEL = `Olá ${user?.name || ""}!`;
   const navbarClasses = classNames(
     "fixed w-screen z-1 bg-vm-background shadow-xl flex flex-row items-center px-4 md:px-12 lg:px-16 box-border py-2 gap-[1vw] md:gap-[4vw]",
     { "justify-center": logoPosition === "center" },

@@ -51,7 +51,7 @@ export function Filter({
   };
 
   return (
-    <div className="w-full p-8 border border-vm-primary rounded-xl w-19/20 flex flex-col lg:flex-row items-center justify-between gap-4">
+    <div className="w-full p-8 border border-vm-primary rounded-xl flex flex-col lg:flex-row items-center justify-between gap-4">
       <NativeSelect
         className="w-full"
         value={neighborhood}

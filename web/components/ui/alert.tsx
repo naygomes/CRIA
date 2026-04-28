@@ -7,12 +7,10 @@ interface AlertProps {
 
 export function Alert({ message, type = "info" }: AlertProps) {
   const alertClasses = {
-    success:
-      "bg-vm-success-100 border border-vm-success-400 text-vm-success-700",
-    error: "bg-vm-error-100 border border-vm-error-400 text-vm-error-700",
-    warning:
-      "bg-vm-warning-100 border border-vm-warning-400 text-vm-warning-700",
-    info: "bg-vm-secondary-100 border border-vm-secondary-400 text-vm-secondary-700",
+    success: "bg-vm-success-500 border border-vm-success text-vm-success",
+    error: "bg-vm-danger-500 border border-vm-danger text-vm-danger",
+    warning: "bg-vm-warning-500 border border-vm-warning text-vm-warning",
+    info: "bg-vm-secondary-500 border border-vm-secondary text-vm-secondary",
   };
   return (
     <div className={`mb-6 p-3 ${alertClasses[type]} text-sm rounded-md`}>
