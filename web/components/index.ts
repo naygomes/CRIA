@@ -1,4 +1,5 @@
 export * from "./AlertSection/AlertSection";
+export * from "./AlertInfo/AlertInfo";
 export * from "./BarChart/BarChart";
 export * from "./ChildCard/ChildCard";
 export * from "./ChildInfo/ChildInfo";

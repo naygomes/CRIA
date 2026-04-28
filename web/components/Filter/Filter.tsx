@@ -18,7 +18,7 @@ interface IFilterProps {
 }
 
 const DEFAULT_LABEL = "Selecione o bairro...";
-const REVIEWED_LABEL = "Crianças não revisadas pela equipe";
+const REVIEWED_LABEL = "Crianças revisadas pela equipe";
 const ALERTS_LABEL = "Crianças com alertas ativos";
 
 export function Filter({
