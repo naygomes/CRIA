@@ -4,6 +4,7 @@ export * from "./ChildCard/ChildCard";
 export * from "./ChildrenPaginator/ChildrenPaginator";
 export * from "./ChildrenSection/ChildrenSection";
 export * from "./Dashboard/Dashboard";
+export * from "./DoughnutChart/DoughnutChart";
 export * from "./Filter/Filter";
 export * from "./Footer/Footer";
 export * from "./LoginForm/LoginForm";

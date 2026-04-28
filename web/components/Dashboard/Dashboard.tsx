@@ -1,5 +1,5 @@
 "use client";
-import { BarChart, Typography } from "@/components";
+import { BarChart, DoughnutChart, Typography } from "@/components";
 import { IGetSummaryResponse } from "@/types";
 
 const DASHBOARD_LABEL = "Dashboard de Alertas";
@@ -11,7 +11,7 @@ interface IDashboardProps {
 
 export function Dashboard({ summary }: IDashboardProps) {
   return (
-    <div className="w-full flex flex-col items-center gap-10">
+    <div className="px-10 w-full flex flex-col items-center gap-10">
       <Typography
         level="h1"
         weight="bold"
@@ -21,8 +21,9 @@ export function Dashboard({ summary }: IDashboardProps) {
         {DASHBOARD_LABEL}
       </Typography>
       {summary !== null ? (
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="w-full h-1/2 grid grid-cols-1 md:grid-cols-2 gap-10">
           <BarChart summary={summary} />
+          <DoughnutChart summary={summary} />
         </div>
       ) : (
         <Typography level="h3" align="center" color="text-vm-navy">
